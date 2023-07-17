@@ -2,8 +2,10 @@ package me.mudkip.moememos.ui.component
 
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,7 +16,9 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dev.jeziellago.compose.markdowntext.MarkdownText
 import me.mudkip.moememos.ext.appendMarkdown
 import org.intellij.markdown.MarkdownElementTypes
 import org.intellij.markdown.flavours.gfm.GFMFlavourDescriptor
@@ -29,7 +33,17 @@ fun Markdown(
     imageContent: @Composable (url: String) -> Unit = {},
     checkboxChange: (checked: Boolean, startOffset: Int, endOffset: Int) -> Unit = { _, _, _ -> }
 ) {
-    val linkColor = MaterialTheme.colorScheme.primary
+
+    MarkdownText(
+        modifier = modifier,
+        markdown = text,
+        textAlign = TextAlign.Start,
+        fontSize = 14.sp,
+        lineHeight = 18.sp,
+        color = LocalContentColor.current,
+        )
+
+    /*val linkColor = MaterialTheme.colorScheme.primary
     val bulletColor = MaterialTheme.colorScheme.tertiary
     val headlineLarge = MaterialTheme.typography.headlineLarge
     val headlineMedium = MaterialTheme.typography.headlineMedium
@@ -86,7 +100,7 @@ fun Markdown(
                     }
             }
         )
-    }
+    }*/
 
 
 }
